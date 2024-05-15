@@ -1,4 +1,4 @@
-![render-banner](assets/render-banner.png)
+![wappler-banner](assets/dalle-wappler.png)
 # Wappler - render WA voice transcription  
 
 Mini-project for automatic speech-2-text transcription
@@ -15,3 +15,5 @@ Ready for render deployment & showcasing.
 - OpenAI API for speech 2 text: https://platform.openai.com/docs/guides/speech-to-text/quickstart
 - Render deployment stuff: https://www.youtube.com/watch?v=OBGaCULCZzg
 - Render env var setup: https://docs.render.com/configure-environment-variables
+
+![render-banner](assets/render-banner.png)
