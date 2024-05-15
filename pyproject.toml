@@ -2,15 +2,15 @@
 requires = [
     "setuptools>=30.0.3",
     "setuptools-scm",
-    "wheel"
 ]
 build-backend = "setuptools.build_meta"
+
 [project]
-name = ""
+name = "wappler"
 version = "0.0.1"
-description = "A small example package"
+description = "Audio files transcription api for WA"
 authors = [
-  { name = "Example Author", email = "author@example.com" },
+  { name = "Mxli417", email = "mx.meidinger@gmail.com" },
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
@@ -27,5 +27,5 @@ dependencies = {file = ["requirements.txt"]}
 optional-dependencies = {dev = { file = ["requirements-dev.txt"] }}
 
 [project.urls]
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+"Homepage" = "https://github.com/mxli417/wappler"
+"Bug Tracker" = "https://github.com/mxli417/wappler/issues"
