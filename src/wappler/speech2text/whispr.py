@@ -6,7 +6,7 @@ from typing import Dict, Union
 
 from openai import OpenAI
 
-from wappler.utils.logger import get_logger
+from wappler.utils.log import get_logger
 
 logger = get_logger(__name__)
 
