@@ -46,6 +46,7 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
+test-results.xml
 *.cover
 *.py,cover
 .hypothesis/
@@ -124,6 +125,10 @@ celerybeat.pid
 
 # Environments
 .env
+.env.*
+!.env-template
+.envrc
+starlette_formdata.txt
 .venv
 env/
 venv/
@@ -163,4 +168,14 @@ cython_debug/
 #.idea/
 .vscode/
 .tox/
-docs/
+docs/_build/
+# Local development queue and quota state. Never ship it or commit it.
+wappler.db*
+
+# Local tunnel credentials and private demonstration material
+ngrok.yml
+.ngrok2/
+local-audio/
+*.pem
+*.p12
+*.pfx

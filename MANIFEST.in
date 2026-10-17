@@ -1,0 +1,6 @@
+include requirements.txt requirements-dev.txt
+recursive-include docs *.rst *.py
+prune docs/_build
+recursive-include tests *.py *.m4a *.ogg
+exclude .env starlette_formdata.txt
+exclude wappler.db wappler.db-journal wappler.db-wal wappler.db-shm

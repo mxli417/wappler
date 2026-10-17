@@ -1,8 +1,7 @@
+"""Outbound WhatsApp messaging through the Twilio REST API."""
+
+from twilio.http.http_client import TwilioHttpClient
 from twilio.rest import Client
-
-from wappler.utils.log import get_logger
-
-logger = get_logger(__name__)
 
 
 def create_wapp_msg(
@@ -12,31 +11,29 @@ def create_wapp_msg(
     msg_to: str,
     msg_body: str = "Empty",
 ) -> str:
-    """Twilio API client messaging wrapper
+    """Send a WhatsApp reply and return the accepted message SID.
 
     Args:
-        account_sid (str): Twilio account sid
-        auth_token (str): Twilio account oauth token
-        msg_from (str, optional): Whatsapp source number.
-        msg_to (str, optional): Whatsapp destination number.
-        msg_body (str, optional): Whatspp Twilio message payload. Defaults to "Empty".
+        account_sid: Twilio account SID.
+        auth_token: Twilio account auth token.
+        msg_from: Registered sender, including the whatsapp: prefix.
+        msg_to: Recipient, including the whatsapp: prefix.
+        msg_body: Reply text.
 
     Returns:
-        str: Twilio message SID
+        Twilio message SID. Acceptance does not confirm delivery.
+
+    Raises:
+        twilio.base.exceptions.TwilioRestException: Twilio rejects the message.
+        RuntimeError: Twilio returns no message identifier.
     """
-    twclient = Client(account_sid, auth_token)
-    if twclient is None:
-        logger.error("Twilio api client init failed: %s" % twclient)
+    http_client = TwilioHttpClient(timeout=15)
     try:
-        message = client.messages.create(
-            from_=msg_from,
-            body=msg_body,
-            to=msg_to,
-        )
-    except Exception as e:
-        logger.error("Twilio api message client error: %s" % e)
-        return None
-    else:
-        logger.info("Twilio api message client sent: %s" % msg_body)
-        msg_sid = message.sid if message is not None else None
-    return msg_sid
+        client = Client(account_sid, auth_token, http_client=http_client)
+        message = client.messages.create(from_=msg_from, body=msg_body, to=msg_to)
+    finally:
+        if http_client.session:
+            http_client.session.close()
+    if not message.sid:
+        raise RuntimeError("Twilio returned no message SID")
+    return message.sid

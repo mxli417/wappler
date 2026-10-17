@@ -1,6 +1,9 @@
-fastapi~=0.111.0
-openapi~=1.1.0
-soundfile==0.12.1
-twilio~=9.0.5
-python-dotenv~=1.0.1
-numpy~=1.26.4
+fastapi>=0.142.2,<1
+uvicorn[standard]>=0.54,<1
+python-multipart>=0.0.32,<1
+openai>=3.24,<4
+requests>=2.34.2,<3
+twilio>=9.11.2,<10
+python-dotenv>=1.2.4,<2
+psycopg[binary]>=3.2,<4
+mutagen>=1.47,<2

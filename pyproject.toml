@@ -1,22 +1,21 @@
 [build-system]
 requires = [
-    "setuptools>=30.0.3",
-    "setuptools-scm",
+    "setuptools>=84,<85",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "wappler"
 version = "0.0.1"
-description = "Audio files transcription api for WA"
+description = "Minimal WhatsApp voice-note transcription service using Twilio and OpenAI"
 authors = [
   { name = "Mxli417", email = "mx.meidinger@gmail.com" },
 ]
-license = { file = "LICENSE" }
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
 readme = "README.md"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 requires-python = ">=3.11"
@@ -29,3 +28,25 @@ optional-dependencies = {dev = { file = ["requirements-dev.txt"] }}
 [project.urls]
 "Homepage" = "https://github.com/mxli417/wappler"
 "Bug Tracker" = "https://github.com/mxli417/wappler/issues"
+"Source" = "https://github.com/mxli417/wappler"
+"Documentation" = "https://github.com/mxli417/wappler/tree/HEAD/docs"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: explicitly enabled tests that call paid external APIs",
+    "openai_live: live transcription only; never sends WhatsApp messages",
+    "twilio_live: sends a real WhatsApp message",
+    "audio_fixture: decodes recorded fixtures with FFmpeg",
+]
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 120
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { file = "requirements.txt" }, { file = "requirements-dev.txt" }]

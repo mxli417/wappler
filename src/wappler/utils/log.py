@@ -3,9 +3,7 @@ import sys
 from typing import Text, Union
 
 
-def get_logger(
-    name: Text = __name__, log_level: Union[Text, int] = logging.DEBUG
-) -> logging.Logger:
+def get_logger(name: Text = __name__, log_level: Union[Text, int] = logging.DEBUG) -> logging.Logger:
     """Get custom logger for module and its logging
 
     Args:
@@ -23,9 +21,7 @@ def get_logger(
         logger.handlers.clear()
 
     console_handler = logging.StreamHandler(sys.stdout)
-    formatter = logging.Formatter(
-        "%(asctime)s — %(name)s — %(levelname)s — %(message)s"
-    )
+    formatter = logging.Formatter("%(message)s")
     console_handler.setFormatter(formatter)
 
     logger.addHandler(console_handler)

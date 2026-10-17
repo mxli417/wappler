@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: wappler
+    runtime: python
+    plan: free
+    autoDeployTrigger: "off"
+    buildCommand: uv sync --frozen
+    startCommand: .venv/bin/uvicorn wappler.api:wappler_app --host 0.0.0.0 --port $PORT --limit-concurrency 32 --backlog 64 --timeout-keep-alive 5 --timeout-graceful-shutdown 25
+    healthCheckPath: /ready
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: ENVIRONMENT
+        value: production
+      - key: UV_VERSION
+        value: 0.12.22
+      - key: DATABASE_URL
+        sync: false
+      - key: SENDER_HOURLY_LIMIT
+        value: "10"
+      - key: GLOBAL_HOURLY_LIMIT
+        value: "40"
+      - key: GLOBAL_DAILY_LIMIT
+        value: "100"
+      - key: WORKER_CONCURRENCY
+        value: "2"
+      - key: MAX_PENDING_JOBS
+        value: "20"
+      - key: MAX_AUDIO_SECONDS
+        value: "300"
+      - key: PROCESSING_ENABLED
+        value: "true"
+      - key: WORKER_ENABLED
+        value: "true"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: TWILIO_TOKEN
+        sync: false
+      - key: TWILIO_SID
+        sync: false
+      - key: TWILIO_WHATSAPP_FROM
+        sync: false
+      - key: ALLOWED_WHATSAPP_SENDERS
+        sync: false
+      - key: TWILIO_APP_URL
+        sync: false
