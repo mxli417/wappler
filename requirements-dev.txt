@@ -1,7 +1,7 @@
 tox>=4.64.7,<5
 setuptools>=84,<85
 pytest>=9.1.1,<10
-black>=26.5.1,<27
+black>=26.10.1,<27
 isort>=9.0.2,<10
 flake8>=7.4.1,<8
 # Sphinx 9.1 requires Python 3.12; keep the newest Python 3.11-compatible line.
