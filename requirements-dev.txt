@@ -7,7 +7,7 @@ flake8>=7.4.1,<8
 # Sphinx 9.1 requires Python 3.12; keep the newest Python 3.11-compatible line.
 sphinx>=9.0.4,<9.1
 httpx>=0.28.1,<1
-httpx2>=2.13.1,<3
+httpx2>=2.16.0,<3
 coverage[toml]>=7.16.2,<8
 build>=1.6.1,<2
 pip-audit>=2.10.1,<3
